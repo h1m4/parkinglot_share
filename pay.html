@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SOPA - Start sharing your parking area!</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+<style>
+.fa-star.on{
+  color: orange;
+}
+</style>
+
+
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar bg-light">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">취소</a>
+            </li>
+        </ul>
+    </nav>
+      <!-- Page Content -->
+      <div class="container">       
+            <div class="text-center font-weight-bold" style="margin-top:50px;">
+            <p> 카카오페이로 결제한 후</p>
+            <p> 결제완료 버튼을 눌러주세요.</p>
+        
+        <div style="margin-top:50px;">
+            <img src="image/pay.png" onclick="javascript:alert('카카오페이 결제  붙이고 오세요!');">
+        </div>
+        
+        </div>
+            <div class="text-center" style="width: 100%; margin-top:50px;">
+            <button type="button" class="btn btn-primary btn-lg"  data-toggle="modal" data-target="#myModal">결제 완료</button>
+            </div>
+            
+        </div>
+    <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">    
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <p class="modal-title text-center">감사합니다.</br> 사용한 주차면에 별점을 남기시겠습니까?</p>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="star modal-body text-center">
+                <span class="fa fa-star on"></span>
+                <span class="fa fa-star on"></span>
+                <span class="fa fa-star on"></span>
+                <span class="fa fa-star on"></span>
+                <span class="fa fa-star"></span>
+          </div>     
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">별점저장</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">그냥나가기</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Menu Toggle Script -->
+  
+  
+  <!-- ㅌㅔ블루 테스트,,,,지울것 -->
+  
+  <script type='text/javascript' src='https://10ay.online.tableau.com/javascripts/api/viz_v1.js'></script>
+  <div class='tableauPlaceholder' style='width: 1200px; height: 599px;'>
+    <object class='tableauViz' width='1200' height='599' style='display:none;'>
+      <param name='host_url' value='https%3A%2F%2F10ay.online.tableau.com%2F' />
+       <param name='embed_code_version' value='3' /> 
+       <param name='site_root' value='&#47;t&#47;paulkim' />
+       <param name='name' value='_0&#47;1' />
+       <param name='tabs' value='no' /><param name='toolbar' value='no' />
+       <param name='showAppBanner' value='false' />
+       <param name='filter' value='iframeSizedToWindow=true' />
+      </object>
+    </div>
+  <!-- /테블루........................... -->
+  <script>
+   $('.star span').click(function(){
+        $(this).parent().children('span').removeClass('on');
+        $(this).addClass('on').prevAll('span').addClass('on');
+        return false;
+    });
+
+    $('.star span').vmouseover(function() {
+        $(this).parent().children('span').removeClass('on');
+        $(this).addClass('on').prevAll('span').addClass('on');
+        return false;
+    });
+    
+  </script>
+
+</body>
+
+</html>

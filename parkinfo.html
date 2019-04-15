@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Bare - Start Bootstrap Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity="sha256-Md8eaeo67OiouuXAi8t/Xpd8t2+IaJezATVTWbZqSOw=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+    <style>
+        .tdate{
+    width: 125px;
+    margin-left: 5px;
+    display: inline-flex;
+    }
+
+    .card-body{
+        padding-bottom:0.5rem;
+    }
+</style>
+
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar bg-light">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">취소</a>
+            </li>
+        </ul>
+    </nav>
+    <br>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="card" style="width: 100%; margin-top:5px;">
+            <div class="card-body">
+                <h5 class="card-title"><i class="far fa-clock"></i>&nbsp;&nbsp;주차가능시간</h5>
+                <p>09:00 AM ~ 06:00 PM</p>
+                </div>
+        </div>
+
+        <div class="card" style="width: 100%; margin-top:5px;">
+            <div class="card-body">
+                <h5 class="card-title"><i class="far fa-credit-card"></i>&nbsp;&nbsp;기본요금</h5>
+                <p>1000원</p>
+            </div>
+        </div>
+
+        <div class="card" style="width: 100%; margin-top:5px;">
+            <div class="card-body">
+                <h5 class="card-title"><i class="far fa-credit-card"></i>&nbsp;&nbsp;시간당추가요금</h5>
+                <p>500원</p>
+            </div>
+        </div>
+        <div class="card" style="width: 100%; margin-top:5px;">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-camera-retro"></i>&nbsp;&nbsp;주차면사진</h5>
+                <img src="image/parking.png">
+             </div>   
+        </div>
+        <div class="card" style="width: 100%; margin-top:5px;">
+            <div class="card-body">
+                <h5 class="card-title"><i class="far fa-comment"></i>&nbsp;&nbsp;주차면설명</h5>
+                <p>엄청 깨끗하고 좋아요. ㅎㅎ</p>
+            </div>
+        </div>
+        
+        <div class="text-center" style="width: 100%; margin-top:10px;">
+        <button type="button" class="btn btn-primary btn-lg"  data-toggle="modal" data-target="#myModal">예약하기</button>
+        </div>
+        
+    </div>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">예약확인</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+                <p>[동민쓰~~ 도남동]주차면을 예약하시겠습니까?</p>
+            </div>     
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <a class="btn btn-primary" href="pay.html">&nbsp;예&nbsp;</a>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker4').datetimepicker({
+                    format: 'L'
+            });
+            
+            $('#datetimepicker7,#datetimepicker8').datetimepicker({
+                format: 'LT',
+                stepping: 10
+            });
+
+            $('#datetimepicker7').datetimepicker();
+            $('#datetimepicker8').datetimepicker({
+                useCurrent: false
+            });
+            $("#datetimepicker7").on("change.datetimepicker", function (e) {
+                $('#datetimepicker8').datetimepicker('minDate', e.date);
+            });
+            $("#datetimepicker8").on("change.datetimepicker", function (e) {
+                $('#datetimepicker7').datetimepicker('maxDate', e.date);
+            });
+        });
+    </script>
+
+
+
+</body>
+
+</html>

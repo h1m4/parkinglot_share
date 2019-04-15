@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SOPA - Start sharing your parking area!</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/simple-sidebar.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+<style>
+/*-------------------------------*/
+/*            Overlay            */
+/*-------------------------------*/
+
+.overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(100,100,100,.8);
+    z-index: 100;   
+}
+
+.top-zindex{
+  z-index: 999;
+}
+
+
+/* daum map */
+.map-container>.map{
+left:0;
+height:100%;
+width:100%;
+position:absolute;
+}
+
+.curpos{
+  position: fixed;
+  bottom:50px;
+  right:30px; 
+  z-index: 99;
+}
+
+.navbar-toggler {
+    border:0px solid transparent;
+}
+
+</style>
+
+
+</head>
+<body>
+  <div class="overlay"></div>
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="border-right top-zindex bg-light" id="sidebar-wrapper">
+      <div class="sidebar-heading">
+          <div class="user-pic">
+              <img class="img-responsive rounded-circle" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                alt="User picture">
+          </div>
+          <div class="user-info">
+              <span class="user-name text-dark">
+                <strong>김호진</strong>
+              </span>
+              <span class="user-role badge badge-pill badge-success">판매자</span>
+            </div>
+      </div>
+      <div class="list-group list-group-flush">
+        <a href="#" class="list-group-item list-group-item-action" id="role-change">
+           <span><i  class="fa fa-user"></i></span><span>사용자계정 전환</span></a>
+        <a href="#" class="list-group-item list-group-item-action">
+            <span><i class="fa fa-wrench"></i></span><span>사용자설정</span></a>
+        <a id="change" href="managing_parkinglot.html" class="list-group-item list-group-item-action">
+            <span><i class="fa fa-plus"></i></span><span class = "control-park">주차면 관리</span></a>
+        <a href="#" class="list-group-item list-group-item-action">
+            <span><i class="fa fa-cog"></i></span><span>SETTINGS</span></a>
+        <a href="login.html" class="list-group-item list-group-item-action">
+            <span><i class="fa fa-sign-in-alt"></i></span><span>로그아웃</span></a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom justify-content-start flex-nowrap">
+        <a class="navbar-toggler"  data-toggle="collapse" id="menu-toggle"><span class="navbar-toggler-icon"></span></a>
+            <form class="navbar-form  flex-grow-1" role="search">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="주차면 위치를 검색합니다." name="q">
+                <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                </div>
+              </div>
+            </form>
+      </nav>
+      <div class="container">
+          <div class="row">
+              <!-- daum map -->
+              <div class="map-container flex-grow-1">
+               <div class="map" id="map"></div>
+              </div>
+              <!-- /daum map -->
+            </div>
+          </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+
+    
+
+  <!-- 지도 클릭 모달 -->
+  <div class="modal fade" id="mapModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="media border p-3 bg-light">
+          <img src="image/parking.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+          <div class="media-body">
+            <h3 id="parkName">도남주차면</h3> <small id="parkAddress" class="text-primary">제주시 복지로 방선문빌리지</small>
+            <p id="parkComment" class="text-secondary">언제라도 환영합니다. 가격 및 위치가 좋아요.</p>    
+            <p class="text-right">
+              <a class="btn btn-info" href="parkinfo.html">주차면 상세보기</a>
+              <a class="btn btn-primary" href="reserve.html">예약하기</a>
+            </p>           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <!-- /#wrapper -->
+  <div class="curpos">
+    <img src="image/currentLocation.png">
+  </div>
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b11dc067f65b632bf05036bb3786506"></script>
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+      $(".overlay").toggle();
+    });
+
+    $(".overlay").click(function () {
+        $('#wrapper').toggleClass('toggled');
+        $(".overlay").toggle();
+      });
+
+      $("#role-change").click(function(){
+        var user_role = $(".user-role").text();
+        var control_park = $(".control-park").text();
+        if(user_role =='판매자') {
+          $(".user-role").text('구매자');
+          $(".control-park").text('차량 관리');
+          $("a[href='managing_parkinglot.html']").attr('href', 'managing_car.html');
+        }
+        else {$(".user-role").text("판매자");
+        $(".control-park").text("주차면 관리");}
+        
+      });
+
+
+      // 다음지도....
+      var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = {
+		        center: new daum.maps.LatLng(33.5002154, 126.532267), // 지도의 중심좌표
+		        level: 6, // 지도의 확대 레벨
+		        mapTypeId : daum.maps.MapTypeId.ROADMAP // 지도종류
+		    }; 
+
+		// 지도를 생성한다 
+		var map = new daum.maps.Map(mapContainer, mapOption); 
+		// 마커 이미지의 주소
+		var markerImageUrl = 'http://hojinistall.cafe24.com/resources/image/mappin3.png', 
+		    markerImageSize = new daum.maps.Size(40, 42), // 마커 이미지의 크기
+		    markerImageOptions = { 
+		        offset : new daum.maps.Point(20, 42)// 마커 좌표에 일치시킬 이미지 안의 좌표
+		    };
+
+		// 마커 이미지를 생성한다
+		var markerImage = new daum.maps.MarkerImage(markerImageUrl, markerImageSize, markerImageOptions);
+
+		
+    // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
+    var positions = [
+    {
+        title: '도남동주차',
+        address:'제주시 도남동 방선문빌리지 4차',
+        comment:'언제라도 환영합니다. 가격 및 위치가 좋아요.' ,
+        latlng: new daum.maps.LatLng(33.4860001, 126.525899)
+    },
+    {
+        title: '제주시청주차',
+        address:'제주시 이도2동 245번지',
+        comment:'시내 접근성이 좋습니다. 가격 및 위치가 좋아요.' , 
+        latlng: new daum.maps.LatLng(33.5002154, 126.532267)
+    },
+    {
+        title: '동민쓰주차', 
+        address:'제주시 삼양동 2번지',
+        comment:'동민이가 맛있는것 사줍니다. 가격 및 위치가 좋아요.' ,
+        latlng: new daum.maps.LatLng(33.5003301, 126.548549)
+    }
+    ];
+    
+    for (var i = 0; i < positions.length; i ++) {
+    // 마커를 생성합니다
+    var marker = new daum.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: positions[i].latlng, // 마커의 위치
+        image : markerImage, // 마커의 이미지
+    });
+
+    // 마커에 클릭 이벤트를 등록합니다
+    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+    daum.maps.event.addListener(marker, 'click', makeClickListener(map, marker,positions[i]));
+    }
+
+// 모달을 만드는 클로저를 만드는 함수입니다 
+function makeClickListener(map, marker,position) {
+  return function(){
+    $("#parkName").text(position.title);
+    $("#parkAddress").text(position.address);
+    $("#parkComment").text(position.comment);
+    $('#mapModal').modal('toggle');
+  }
+}
+    
+    $(".curpos").click(function(){
+      alert("현재위치는 웹뷰에서 지원하지 않네요. 안드로이드 네이티브 기능으로 해야 겠네요.");
+    });
+
+
+    
+    // // 지도에 마커를 생성하고 표시한다
+		// var marker = new daum.maps.Marker({
+		//     position: new daum.maps.LatLng(33.4860001, 126.525899), // 마커의 좌표
+		//     image : markerImage, // 마커의 이미지
+		//     map: map // 마커를 표시할 지도 객체
+		// });
+
+		// // 마커에 클릭 이벤트를 등록한다 (우클릭 : rightclick)
+		// daum.maps.event.addListener(marker, 'click', function() {
+    //   $('#mapModal').modal('toggle');
+		// });
+  </script>
+
+</body>
+
+</html>
